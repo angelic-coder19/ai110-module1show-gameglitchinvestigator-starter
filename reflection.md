@@ -8,8 +8,11 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 - List at least two concrete bugs you noticed at the start  
   (for example: "the secret number kept changing" or "the hints were backwards").
-  1. The hints are backwards, it recommends you to go higher when the geuess is too high, and lower when the guess is too low
+  1. The hints are backwards, it recommends you to go higher when the geuess is too high, and lower when the guess is too low 
+
   2. The enter button doesn't work, it doesn't register the guess and doesn't give any feedback to the user
+  
+  3. The range of target number is always displayed as 1-100, even when a different difficulty level is selected. It is always static and doesn't update based on the difficulty level chosen by the user.
 ---
 
 ## 2. How did you use AI as a teammate?
