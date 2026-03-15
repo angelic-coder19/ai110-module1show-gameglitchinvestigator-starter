@@ -25,14 +25,18 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- The purpose of the game is to allow the user to enter of series of guesses to try and find the hidden target. The user's score is higher if the number of attempts they have taken is low lower vice-versa. The user can also select a difficulty level, which changes the range of the target number. The game provides hints to the user after each guess, indicating whether the guess is too high or too low compared to the target number. The game ends when the user correctly guesses the target number, at which point their final score is displayed.
+- The bugs found:
+   1. The hints are backwards, it recommends you to go higher when the geuess is too high, and lower when the guess is too low
+   2. The enter button doesn't work, it doesn't register the guess and doesn't give any feedback to the user
+   3. The range of target number is always displayed as 1-100, even when a different difficulty level is selected. It is always static and doesn't update based on the difficulty level chosen by the user.
+- To fix the bugs:
+   1. I fixed the hints by changing the logic in the code to provide the correct feedback based on whether the guess is too high or too low compared to the target number.
+   2. I fixed the enter button by ensuring that it correctly registers the user's guess and provides feedback on whether the guess is correct, too high, or too low.
+   3. I fixed the range display issue by updating the code to dynamically change the displayed range of the target number based on the difficulty level selected by the user.
 
 ## 📸 Demo
+![game demo](image.png)
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
-
-## 🚀 Stretch Features
-
-- [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
+## Test Resutls
+![alt text](image-1.png)
