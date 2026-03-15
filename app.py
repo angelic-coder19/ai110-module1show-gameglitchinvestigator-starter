@@ -63,6 +63,10 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
 
     return current_score
 
+
+def _trigger_submit():
+    st.session_state.submit_guess = True
+
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
 st.title("🎮 Game Glitch Investigator")
@@ -103,6 +107,9 @@ if "status" not in st.session_state:
 if "history" not in st.session_state:
     st.session_state.history = []
 
+if "submit_guess" not in st.session_state:
+    st.session_state.submit_guess = False
+
 st.subheader("Make a guess")
 
 st.info(
@@ -119,7 +126,9 @@ with st.expander("Developer Debug Info"):
 
 raw_guess = st.text_input(
     "Enter your guess:",
-    key=f"guess_input_{difficulty}"
+    key=f"guess_input_{difficulty}",
+    on_change=_trigger_submit,
+    args=()
 )
 
 col1, col2, col3 = st.columns(3)
@@ -136,6 +145,7 @@ if new_game:
     st.session_state.score = 0
     st.session_state.status = "playing"
     st.session_state.history = []
+    st.session_state.submit_guess = False
     st.success("New game started.")
     st.rerun()
 
@@ -146,7 +156,7 @@ if st.session_state.status != "playing":
         st.error("Game over. Start a new game to try again.")
     st.stop()
 
-if submit:
+if submit or st.session_state.submit_guess:
     st.session_state.attempts += 1
 
     ok, guess_int, err = parse_guess(raw_guess)
@@ -188,6 +198,8 @@ if submit:
                     f"The secret was {st.session_state.secret}. "
                     f"Score: {st.session_state.score}"
                 )
+    # reset the submit flag so repeated Enter presses don't re-submit
+    st.session_state.submit_guess = False
 
 st.divider()
 st.caption("Built by an AI that claims this code is production-ready.")
